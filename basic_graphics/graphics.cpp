@@ -226,7 +226,8 @@ void bridge()
 		glScaled(-0.5, 0, 0);
 		glTranslated(0, -SKY_LINE, 0);
 
-		//=========================== reflaction
+
+		//=========================== reflaction didnt work
 		//Frame for bridge
 		//glBegin(GL_LINE_STRIP);
 		//glLineWidth(7);
