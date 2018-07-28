@@ -182,12 +182,9 @@ void DrawBuildingAndReflection(double w, double h, double x, double r, double g,
 void bridge()
 {
 	double i,y;
-	//Frame for bridge
+	//Frame for bridge rgb (235, 237, 234)
 	glBegin(GL_LINE_STRIP);
-	
-		glScaled(1, -3, 1);
-		glTranslated(0.5, 0, 0);
-		glColor3d(1,1,1);
+		glColor3d(0.92,0.93,0.92);
 		glLineWidth(7);
 		for (i = -1; i < 0; i += 0.01)
 		{
@@ -198,7 +195,6 @@ void bridge()
 		glEnd();
 
 		//Strings for a bridge
-		glColor3d(1, 1, 1);
 		double const bridgeDelta = 0.05;
 		double const bridgeStringsDelta = 0.01;
 		for (i = -1; i < 0; i += bridgeDelta)
@@ -216,18 +212,42 @@ void bridge()
 		
 	//Floor to bridge
 		glBegin(GL_POLYGON);
+		glColor3d(0.33,0.33, 0.32);
 		glVertex2d(-1, SKY_LINE);
 		glVertex2d(0, SKY_LINE);
 		glVertex2d(0, SKY_LINE -0.01);
 		glVertex2d(-1, SKY_LINE - 0.01);
 		glEnd();
 
-		glPushMatrix();
-		glScaled(-0.5, 0, 0);
-		glTranslated(0, -SKY_LINE, 0);
-
-
 		//=========================== reflaction didnt work
+		//Frame for bridge redlaction
+		glBegin(GL_LINE_STRIP);
+		glLineWidth(7);
+		for (i = -1; i < 0; i += 0.01)
+		{
+			y = fabs(cos(i)*sin(i));
+			glVertex2d(i, -0.5*y + SKY_LINE);
+
+		}
+		glEnd();
+
+		//Strings for a bridge reflaction
+		
+		glColor3d(0.76, 0.76, 0.76);
+		for (i = -1; i < 0; i += bridgeDelta)
+		{
+			glBegin(GL_POLYGON);
+			y = fabs(cos(i)*sin(i));
+			glVertex2d(i, -0.5*y + SKY_LINE); // left top
+			i += bridgeStringsDelta;
+			y = fabs(cos(i)*sin(i));
+			glVertex2d(i, -0.5*y + SKY_LINE); // right top
+			glVertex2d(i, SKY_LINE); // right down
+			glVertex2d(i - bridgeStringsDelta, SKY_LINE); // left down
+			glEnd();
+		}
+
+
 		//Frame for bridge
 		//glBegin(GL_LINE_STRIP);
 		//glLineWidth(7);
